@@ -47,4 +47,4 @@ Give a ⭐️ if this project helped you!
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
 
-<script id="asciicast-304863" src="https://asciinema.org/a/304863.js" async></script>
+<a href="https://asciinema.org/a/304863"><img src="https://asciinema.org/a/304863.png" width="836"/></a>
