@@ -1,0 +1,20 @@
+### Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+# Test binary, built with `go test -c`
+*.test
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+# Ignores the whole .idea folder and all .iml files
+# See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/3
+.idea/
+# Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
+*.iml
+modules.xml
+.idea/misc.xml
+*.ipr
+# Sonarlint plugin
+.idea/sonarlint

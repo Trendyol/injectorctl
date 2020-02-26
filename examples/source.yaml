@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox-deployment
+  annotations:
+    name: app1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      pod: busybox
+  template:
+    metadata:
+      labels:
+        pod: busybox
+    spec:
+      containers:
+        - name: busybox-container
+          image: busybox
+          command: ["/bin/sh"]
+          args: ["-c", "while true; do cat /var/busybox/config.txt; sleep 2; done"]
+      serviceAccountName: busybox-sa
