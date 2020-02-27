@@ -9,4 +9,5 @@ require (
 	github.com/spf13/cobra v0.0.6
 	golang.org/x/net v0.0.0-20200226121028-0de0cce0169b // indirect
 	k8s.io/api v0.17.3
+	k8s.io/apimachinery v0.17.3
 )

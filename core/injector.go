@@ -1,6 +1,7 @@
 package core
 
 import (
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"log"
 )
 
@@ -11,25 +12,21 @@ var annotations = map[string]string{
 	"trendyol.com/vault-server-addr":       "http://vault.platform:8200",
 }
 
-const (
-	POD        = "Pod"
-	DEPLOYMENT = "Deployment"
-)
+var injectors = map[metav1.GroupVersionResource]Injector{}
 
-type injector interface {
+type Injector interface {
+	Version() metav1.GroupVersionResource
 	Inject(resource interface{}) string
 }
 
-func FromSource2Injector(resource string) injector {
+func FromSource2Injector(resource string) Injector {
 	if resource == "" {
 		log.Fatal("resource can not be empty")
 	}
-	switch resource {
-	case POD:
-		return new(PodsInjector)
-	case DEPLOYMENT:
-		return new(DeploymentsInjector)
-	default:
-		return nil
+	for _, injector := range injectors {
+		if injector.Version().Resource == resource {
+			return injector
+		}
 	}
+	return nil
 }

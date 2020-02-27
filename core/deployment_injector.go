@@ -4,10 +4,20 @@ import (
 	"encoding/json"
 	"github.com/ghodss/yaml"
 	appsV1 "k8s.io/api/apps/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"log"
 )
 
 type DeploymentsInjector struct {
+}
+
+func init() {
+	deploymentsInjector := &DeploymentsInjector{}
+	injectors[deploymentsInjector.Version()] = deploymentsInjector
+}
+
+func (p *DeploymentsInjector) Version() metav1.GroupVersionResource {
+	return metav1.GroupVersionResource{Version: "v1", Resource: "Deployment"}
 }
 
 func (p *DeploymentsInjector) Inject(resource interface{}) string {

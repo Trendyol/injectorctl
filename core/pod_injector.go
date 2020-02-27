@@ -4,12 +4,21 @@ import (
 	"encoding/json"
 	"github.com/ghodss/yaml"
 	coreV1 "k8s.io/api/core/v1"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"log"
 )
 
 type PodsInjector struct {
 }
 
+func init() {
+	podsInjector := &PodsInjector{}
+	injectors[podsInjector.Version()] = podsInjector
+}
+
+func (p *PodsInjector) Version() metav1.GroupVersionResource {
+	return metav1.GroupVersionResource{Version: "v1", Resource: "Pod"}
+}
 
 func (p *PodsInjector) Inject(resource interface{}) string {
 	resourceAsBytes, err := json.Marshal(resource)
