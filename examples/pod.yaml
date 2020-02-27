@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    pod: busybox
+spec:
+  containers:
+    - name: busybox-container
+      image: busybox
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do cat /var/busybox/config.txt; sleep 2; done"]
+  serviceAccountName: busybox-sa
