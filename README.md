@@ -14,19 +14,45 @@
 ## Install
 
 ```sh
-go install
+You can directly install this project, clone this project and run :
+$ go install
+
+Or you can use docker image to build this project :
+
+$ docker image build -t <your_id>/injectorctl .
+
 ```
 
 ## Usage
 
 ```sh
 injectorctl inject -f <file_path> or <stdin>
+
 ```
 
 ## Run tests
 
 ```sh
-injectorctl inject -f $HOME/hello.yaml
+$ injectorctl inject -f $HOME/hello.yaml
+
+or directly from image in two ways
+
+$ docker container run --interactive <your_id>/injectorctl:latest -<./examples/pod.yaml
+
+$ docker container run --interactive trendyoltech/injectorctl:latest -<<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    pod: busybox
+spec:
+  containers:
+    - name: busybox-container
+      image: busybox
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do cat /var/busybox/config.txt; sleep 2; done"]
+  serviceAccountName: busybox-sa
+EOF
 ```
 
 ## Author
