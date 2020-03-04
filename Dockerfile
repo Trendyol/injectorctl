@@ -10,4 +10,3 @@ COPY --from=build /app/injectorctl /usr/local/bin/injectorctl
 COPY --from=build app/entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
-CMD []
